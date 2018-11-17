@@ -5,11 +5,22 @@ from urllib.parse import parse_qs
 import cgi
 
 
+
+
+
 class GP(BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
+
+    def read_file(self, address):
+        try:
+            with open(address) as f:
+                read_data = f.read()
+            return bytes(read_data, "utf8")
+        except FileNotFoundError:
+            self.send_error(404, "File not found: '%s'" % address)
 
     def do_HEAD(self):
         self._set_headers()
@@ -19,18 +30,30 @@ class GP(BaseHTTPRequestHandler):
         print(self.path)
         parse_a = parse_qs(self.path[2:])  # {'bin': ['go'], 'foo': ['bar']}
         print(parse_a)
-        if 'id' in parse_a:
-            p_path = parse_a['id'][0]  # 'w1.json'
-            print(p_path)
-            try:
-                with open(p_path) as f:
-                    read_data = f.read()
-                self.wfile.write(read_data)
-            except:
-                self.send_error(404, "File not found: '%s'" % p_path) 
+        if 'cmd' in parse_a:
+            cmd = parse_a['cmd'][0]
+
+            if cmd == 'workflow':
+                if 'id' in parse_a:
+                    fid = parse_a['id'][0]  # 'w1.json'
+                    print(id)
+                    self.wfile.write(self.read_file('./workflows/' + fid + '.json'))
+                else:
+                    self.send_error(404, "Please specify 'id', e.g. 'id=workflow1': '%s'" % self.path)
+
+            elif cmd == 'device':
+                if 'id' in parse_a:
+                    fid = parse_a['id'][0]  # 'w1.json'
+                    print(id)
+                    self.wfile.write(self.read_file('./devices/' + fid + '.json'))
+                else:
+                    self.send_error(404, "Please specify 'id', e.g. 'id=device1': '%s'" % self.path)
+
+            else:
+                self.send_error(404, "No valid command found: '%s'" % self.path)
         else:
-            self.send_error(404, "GET-Option not found: %s" % parse_a) 
-            
+            self.send_error(404, "Please specify a command, e.g. 'cmd=device': '%s'" % self.path)
+
     def do_POST(self):
         self._set_headers()
         form = cgi.FieldStorage(
