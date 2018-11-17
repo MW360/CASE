@@ -1,4 +1,14 @@
 {
   "name" : "oTime",
-  "updateTime" : 1000
+  "updateTime" : 1000,
+  "connections" : 1,
+  "inputs": [
+        {
+            "name":"Inp1",
+            "type": "bool",
+            "description": "..."
+        }
+    ],
+    "outputs":[
+    ]
 }
