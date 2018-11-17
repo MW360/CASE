@@ -1,0 +1,31 @@
+ 
+{
+    "nodes": [
+        {
+            "id": "1",
+            "name":"switch",
+            "x":123,
+            "y":123
+        },
+        {
+            "id": "1",
+            "name":"switch",
+            "x":123,
+            "y":123
+        }
+    ],
+    "connections": [
+        {
+            "sender": "1",
+            "reciever": "2",
+            "sendOut": "onstate",
+            "recIn": "lightOn"
+        },
+        {
+            "sender": "1",
+            "reciever": "2",
+            "sendOut": "onstate",
+            "recIn": "lightOn"
+        }
+    ]
+}
