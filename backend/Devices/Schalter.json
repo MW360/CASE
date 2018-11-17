@@ -1,5 +1,5 @@
 {
-    "name": "Device",
+    "name": "Schalter",
     "description": "Ich bin ein Device",
     "type" : "Device",
     "interface" : "DEBUG",
