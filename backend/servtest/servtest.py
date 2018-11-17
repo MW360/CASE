@@ -1,24 +1,27 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from urlparse import parse_qs
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import parse_qs
 import cgi
+
 
 class GP(BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
+
     def do_HEAD(self):
         self._set_headers()
+
     def do_GET(self):
         self._set_headers()
-        print self.path
-        parse_a = parse_qs(self.path[2:]) #{'bin': ['go'], 'foo': ['bar']}
-        print parse_a
+        print(self.path)
+        parse_a = parse_qs(self.path[2:])  # {'bin': ['go'], 'foo': ['bar']}
+        print(parse_a)
         if 'id' in parse_a:
-            p_path = parse_a['id'][0] #'w1.json'
-            print p_path
+            p_path = parse_a['id'][0]  # 'w1.json'
+            print(p_path)
             try:
                 with open(p_path) as f:
                     read_data = f.read()
@@ -37,8 +40,8 @@ class GP(BaseHTTPRequestHandler):
         )
         w_id = form.getvalue('id')
         content = form.getvalue('content')
-        if w_id != None:
-            if content != None:
+        if w_id is not None:
+            if content is not None:
                 try:
                     f = open(w_id, "w")
                     f.write(content)
@@ -55,10 +58,12 @@ class GP(BaseHTTPRequestHandler):
         else:
             self.send_error(404, "'id' not found: '%s'" % form)
 
+
 def run(server_class=HTTPServer, handler_class=GP, port=8088):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
-    print 'Server running at localhost:8088...'
+    print('Server running at localhost:8088...')
     httpd.serve_forever()
+
 
 run()
