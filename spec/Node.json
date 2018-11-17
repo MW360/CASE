@@ -1,0 +1,23 @@
+{
+    "name": "",
+    "description": "",
+    "inputs": [
+        {
+            "name":"onstate",
+            "type": "bool",
+            "dscription": "..."
+        },
+        {
+            "name":"onstate",
+            "type": "bool",
+            "dscription": "..."
+        } 
+    ],
+    "outputs":[
+        {
+            "name":"outstate",
+            "type": "bool",
+            "dscription": "..."
+        } 
+    ]
+}
