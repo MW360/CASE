@@ -21,6 +21,14 @@ body {
     border-right: 1px solid rgba(0,0,0,.125);
 }
 
+.sidebar-wrapper-right {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    border-left: 1px solid rgba(0, 0, 0, .125);
+}
+
 .main-wrapper {
     position: absolute;
     left: 20%;
