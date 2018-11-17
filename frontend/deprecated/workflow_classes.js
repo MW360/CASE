@@ -52,6 +52,10 @@ class Grid{
         this.selectedNode = tempGroup;
         this.htmlElement.appendChild(tempGroup);
     }
+
+    updateNode(){
+        
+    }
 }
 
 class Node{
