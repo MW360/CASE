@@ -1,27 +1,42 @@
+import DataClass
+import json
+Workflow = {}
 
-class Node():
-    def __init__(self):
-        self.id;
-        self.name;
-        self.x;
-        self.y;
 
-class Connection:
-    def __init__(self):
-        self.sender;
-        self.reciever;
-        self.sendOut;
-        self.recIn;
+def GetWorkflow(workflow):
+    data = json.loads(workflow);
 
-class Input():
-    def __init__(self):
-        self.name;
-        self.type;
-        self.description;
 
-class Output():
-    def __init__(self):
-        self.name;
-        self.type;
-        self.description;
 
+def GenerateNodes():
+    node = DataClass.Node();
+    node.name = "Hallo";
+    node.description = "...";
+    node.inputs = []
+
+    inp = DataClass.Input();
+    inp.name = "Input0";
+    inp.type = "bool";
+    inp.description = "...";
+    node.inputs.Append(inp);
+
+    inp = DataClass.Input();
+    inp.name = "Input1";
+    inp.type = "bool";
+    inp.description = "...";
+    node.inputs.Append(inp);
+
+    out = DataClass.Output();
+
+    
+
+
+
+
+
+    pass;
+
+
+w = open("./venv/Workflow.json", "r");
+r = w.read();
+GetWorkflow(r);
