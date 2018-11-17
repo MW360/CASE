@@ -1,10 +1,11 @@
 import sys
 import json
 import os
-Workflow = {}
-Devices = {}
-Scripts = {}
-Driver = {}
+WorkflowJson = {}
+DevicesJson = {}
+ScriptsPy = {}
+DriversPy = {}
+DriversJson = {}
 
 def GetWorkflows():
     ls = os.listdir("./Workflows/");
@@ -13,7 +14,7 @@ def GetWorkflows():
             w = open("./Workflows/"+f);
             data = w.read();
             w.close();
-            Workflow[f.split(".")[0]] = json.loads(data);
+            WorkflowJson[f.split(".")[0]] = json.loads(data);
 
 def GetNodes():
     ls = os.listdir("./Devices/");
@@ -22,9 +23,29 @@ def GetNodes():
             w = open("./Devices/" + f);
             data = w.read();
             w.close();
-            Devices[f.split(".")[0]] = json.loads(data);
+            DevicesJson[f.split(".")[0]] = json.loads(data);
 def CreateNewDevice():
     pass
+def GetDriver():
+    ls = os.listdir("./Driver/");
+    for f in ls:
+        if "." not in f:
+            w = open("./Driver/" + f + "/" + f + ".json");
+            data = w.read();
+            w.close();
+            DriversJson[f.split(".")[0]] = json.loads(data);
+
+            filepath = "Driver/" + f + "/" +f
+            directory, fnc_name = os.path.split(filepath)
+            path = list(sys.path)
+            sys.path.insert(0, directory)
+
+            try:
+                i = __import__(f.split(".")[0])
+            finally:
+                sys.path[:] = path
+            DriversPy[f.split(".")[0]] = i;
+
 
 def GetScript():
     ls = os.listdir("./Devices/");
@@ -41,13 +62,15 @@ def GetScript():
                 i = __import__(f.split(".")[0])
             finally:
                 sys.path[:] = path
-            Scripts[f.split(".")[0]] = i;
+            ScriptsPy[f.split(".")[0]] = i;
+
+def GetNodeNames(workflowname):
+    if workflowname not in WorkflowJson.keys():
+        return
+    print(WorkflowJson[workflowname]);
+    l = []
+    for node in WorkflowJson[workflowname]["nodes"]:
+        l.append(node["name"])
+    return l
 
 
-
-GetWorkflows();
-GetNodes();
-GetScript();
-print(Workflow.keys());
-print(Devices.keys());
-print(Scripts.keys());
