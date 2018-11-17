@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CASE - Workflows</title>
+    <title>CASE - Drivers</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/site.css">
@@ -25,8 +25,8 @@
         <div class="sidebar-wrapper">
             <div class="container-fluid sidebar-container">
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-icon-action active" href="/">Workflows</a>
-                    <a class="list-group-item list-group-icon-action" href="/drivers.html">Drivers</a>
+                    <a class="list-group-item list-group-icon-action" href="/">Workflows</a>
+                    <a class="list-group-item list-group-icon-action active" href="/drivers.html">Drivers</a>
                     <a class="list-group-item list-group-icon-action" href="/scripts.html">Scripts</a>
                 </div>
             </div>
@@ -44,18 +44,15 @@
                         {
                             name: "Test2",
                             description: "Test test test",
-                            editLink: "/workflow.html?name=test2",
-                            deleteFunction: () => grid.removeItems({name: "Test2"})
+                            editLink: "/workflow.html?name=test2"
                         }
                     ]
 
-                    //TODO: 
-
-                    let grid = new MenuGrid($('#menu-grid'), dummy, (n) => grid.removeItems({name: n}))
+                    let grid = new MenuGrid($('#menu-grid'), dummy)
                     grid.render()
 
                     grid.addItems({name: "Test3"})
-                    //grid.removeItems({name: "Test2"})
+                    grid.removeItems({name: "Test2"})
                 </script>
             </div>
         </div>

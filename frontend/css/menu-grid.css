@@ -1,0 +1,19 @@
+#menu-grid {
+    padding-top: 10px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#menu-grid > div {
+    width: 200px;
+    margin: 5px;
+}
+
+#menu-grid .menu-grid-divider {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+}
+
+#menu-grid .delete-link {
+    color: red;
+}
