@@ -1,0 +1,37 @@
+{
+    "nodes": [
+        {
+            "id": "1",
+            "name":"Device",
+            "x":123,
+            "y":123
+        },
+        {
+            "id": "2",
+            "name":"Fnc",
+            "x":123,
+            "y":123
+        }
+        ,
+        {
+            "id": "3",
+            "name":"Lampe",
+            "x":123,
+            "y":123
+        }
+    ],
+    "connections": [
+        {
+            "sender": "1",
+            "reciever": "2",
+            "sendOut": "onstate",
+            "recIn": "lightOn"
+        },
+        {
+            "sender": "2",
+            "reciever": "3",
+            "sendOut": "onstate",
+            "recIn": "lightOn"
+        }
+    ]
+}
