@@ -1,0 +1,14 @@
+{
+  "name" : "DEBUG",
+  "updateTime" : 2000,
+  "connections" : 5,
+  "inputs": [
+        {
+            "name":"Inp1",
+            "type": "bool",
+            "description": "..."
+        }
+    ],
+    "outputs":[
+    ]
+}

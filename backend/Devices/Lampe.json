@@ -1,0 +1,16 @@
+{
+    "name": "Lampe",
+    "description": "Ich bin eine Lampe",
+    "type" : "Device",
+    "interface" : "DEBUG",
+    "interfaceID" : "1",
+    "inputs": [
+        {
+            "name":"Inp1",
+            "type": "bool",
+            "description": "..."
+        }
+    ],
+    "outputs":[
+    ]
+}

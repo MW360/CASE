@@ -19,6 +19,7 @@ class Connection:
         self.sendOut;
         self.recIn;
 
+
 class Input():
     def __init__(self):
         self.name;
@@ -31,3 +32,10 @@ class Output():
         self.type;
         self.description;
 
+
+class Device():
+    def __init__(self):
+        self.name;
+        self.description;
+        self.inputs = [];
+        self.outputs = [];

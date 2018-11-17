@@ -24,5 +24,4 @@ var fn = () => {
 }
 
 
-
 mxUtils.makeDraggable(h, graph, fn, null, 0, 0, true, true)

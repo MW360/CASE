@@ -1,23 +1,26 @@
 {
-    "name": "Device",
+    "name": "Schalter",
     "description": "Ich bin ein Device",
+    "type" : "Device",
+    "interface" : "DEBUG",
+    "interfaceID" : "2",
     "inputs": [
         {
             "name":"Inp1",
-            "type": "Inp2",
+            "type": "bool",
             "description": "..."
         },
         {
             "name":"Inp2",
-            "type": "Inp2",
+            "type": "bool",
             "description": "..."
-        } 
+        }
     ],
     "outputs":[
         {
             "name":"Out1",
             "type": "bool",
             "description": "..."
-        } 
+        }
     ]
 }

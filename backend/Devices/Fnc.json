@@ -1,0 +1,31 @@
+{
+    "name": "Fnc",
+    "description": "Ich bin eine Funktion",
+    "type" : "Script",
+    "interface" : "",
+    "interfaceID" : "",
+    "inputs": [
+        {
+            "name":"Inp1",
+            "type": "bool",
+            "description": "..."
+        },
+        {
+            "name":"Inp2",
+            "type": "bool",
+            "description": "..."
+        }
+    ],
+    "outputs":[
+        {
+            "name":"Out1",
+            "type": "bool",
+            "description": "..."
+        },
+        {
+            "name":"Out2",
+            "type": "bool",
+            "description": "..."
+        }
+    ]
+}
