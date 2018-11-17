@@ -2,6 +2,8 @@
     "name": "Fnc",
     "description": "Ich bin eine Funktion",
     "type" : "Script",
+    "interface" : "",
+    "interfaceID" : "",
     "inputs": [
         {
             "name":"Inp1",
