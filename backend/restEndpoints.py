@@ -6,6 +6,8 @@ from flask_cors import CORS, cross_origin
 app = flask.Flask('moin')
 cors = CORS(app)
 
+# - - - - GET ENDPOINTS - - - -
+
 @app.route('/devices', methods=['GET'])
 @cross_origin()
 def getDevices():
@@ -41,7 +43,7 @@ def getWorkflows():
             templist.append(tempcontent)
     return str(templist).replace('\'','')
 
-@app.route('/workflows/<workflowname>')
+@app.route('/workflows/<workflowname>', methods=['GET'])
 @cross_origin()
 def getWorkflowByName(workflowname):
     if os.path.isfile('workflows/' + workflowname + '.json'):
@@ -49,3 +51,20 @@ def getWorkflowByName(workflowname):
             return json.read()
     else:
         return "NOPE", 404
+
+
+# - - - - POST ENDPOINTS - - - -
+
+@app.route('/devices/<devicename>', methods=['POST'])
+@cross_origin()
+def postDeviceByName(devicename):
+    with open('devices/' + devicename + '.json','w') as json:
+        json.write(flask.request.data.decode('UTF8'))
+    return 'Written to disk'
+
+@app.route('/workflow/<workflowname>', methods=['POST'])
+@cross_origin()
+def postWorkflowByName(workflowname):
+    with open('workflow/' + workflowname + '.json','w') as json:
+        json.write(flask.request.data.decode('UTF8'))
+    return 'Written to disk'
