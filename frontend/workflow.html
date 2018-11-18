@@ -43,6 +43,7 @@
                     </div>
                     <p>&nbsp;</p>-->
                     <div class="list-group list-group-flush">
+                        
                         <button id="save-button" class="btn btn-link list-item list-item-action">Save</button>
                     </div>
                 </div>
@@ -50,6 +51,8 @@
         </div>
     </div>
     <script>
+        var id_cnt = 0;
+
         let json = null
         let devices = [];
         let scripts = [];
@@ -109,20 +112,32 @@
                 makeDynamicSender(entry, (x, y) => {
                     let node = graph.insertVertex(parent, null, device.name, x, y, 120, 80)
                     node.setConnectable(false)
+                    node.data = {
+                        id: id_cnt++,
+                        name: device.name
+                    }
 
                     let count = device.inputs.length;
                     let spacing = (120 / (count + 1));
                         console.log(count);
                     for (i in device.inputs) {
                         let xs = (spacing * (i*1 + 1)) - 5;
-                        graph.insertVertex(node, null, 'I', xs, 0, 10, 10);
+                        let child = graph.insertVertex(node, null, 'I', xs, 0, 10, 10);
+                        child.data = {
+                            reciever: id_cnt,
+                            recIn: device.inputs[i].name
+                        }
                     }
 
                     count = device.outputs.length
                     spacing = (120 /(count + 1))
                     for (o in device.outputs) {
                         let xs = (spacing * (o*1 + 1)) - 5
-                        graph.insertVertex(node, null, 'O', xs, 70, 10, 10);
+                        let child = graph.insertVertex(node, null, 'O', xs, 70, 10, 10);
+                        child.data = {
+                            sender: id_cnt,
+                            sendOut: device.outputs[o].name
+                        }
                     }
                 })
             }
@@ -138,20 +153,32 @@
                 makeDynamicSender(entry, (x, y) => {
                     let node = graph.insertVertex(parent, null, script.name, x, y, 120, 80)
                     node.setConnectable(false)
+                    node.data = {
+                        id: id_cnt++,
+                        name: script.name
+                    }
 
                     let count = script.inputs.length;
                     let spacing = (120 / (count + 1));
                         console.log(count);
                     for (i in script.inputs) {
                         let xs = (spacing * (i*1 + 1)) - 5;
-                        graph.insertVertex(node, null, 'I', xs, 0, 10, 10);
+                        let child = graph.insertVertex(node, null, 'I', xs, 0, 10, 10);
+                        child.data = {
+                            reciever: id_cnt,
+                            recIn: screen.inputs[i].name
+                        }
                     }
 
                     count = script.outputs.length
                     spacing = (120 /(count + 1))
                     for (o in script.outputs) {
                         let xs = (spacing * (o*1 + 1)) - 5
-                        graph.insertVertex(node, null, 'O', xs, 70, 10, 10);
+                        let child = graph.insertVertex(node, null, 'O', xs, 70, 10, 10);
+                        child.data = {
+                            sender: id_cnt,
+                            sendOut: script.outputs[o].name
+                        }
                     }
                 })
             }

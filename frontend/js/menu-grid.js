@@ -20,7 +20,7 @@ class MenuGrid {
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text">${item.description}</p>
                     <hr/>
-                    <a class="card-link" href="${this.editLink}">Edit</a>
+                    <a class="card-link" href="${item.editLink}">Edit</a>
                     <a class="card-link delete-link" href="#">Delete</a>
                 </div>
             </div>
