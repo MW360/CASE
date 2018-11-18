@@ -1,0 +1,26 @@
+{
+    "name": "Add",
+    "description": "Adds two values",
+    "type" : "Script",
+    "interface" : "",
+    "interfaceID" : "",
+    "inputs": [
+        {
+            "name":"Inp1",
+            "type": "bool",
+            "description": "summand 1"
+        },
+        {
+            "name":"Inp2",
+            "type": "bool",
+            "description": "summand 2"
+        }
+    ],
+    "outputs":[
+        {
+            "name":"Out1",
+            "type": "bool",
+            "description": "sum"
+        }
+    ]
+}
