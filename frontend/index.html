@@ -13,7 +13,6 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/menu-grid.js"></script>
-    <script type="text/javascript" src="js/data-manager.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light">
@@ -36,26 +35,18 @@
             <div class="container-fluid">
                 <div id="menu-grid"></div>
                 <script>
-                    let dummy = [
-                        {
-                            name: "Test",
-                            description: "This is a test",
-                            editLink: "/workflow.html?name=test"
-                        },
-                        {
-                            name: "Test2",
-                            description: "Test test test",
-                            editLink: "/workflow.html?name=test2",
-                            deleteFunction: () => grid.removeItems({name: "Test2"})
+                    let workflows = []
+                    let grid = null
+
+                    $.get('http://localhost:5000/workflows', (data) => {
+                        let json = JSON.parse(data)
+                        for(e of json) {
+                            workflows.push({ name: e.name, description: e.description || '&nbsp;', editLink: `/workflow.html?name=${e.name}` })
                         }
-                    ]
-                    //TODO: 
 
-                    let grid = new MenuGrid($('#menu-grid'), dummy, (n) => grid.removeItems({name: n}))
-                    grid.render()
-
-                    grid.addItems({name: "Test3"})
-                    //grid.removeItems({name: "Test2"})
+                        grid = new MenuGrid($('#menu-grid'), workflows, (n) => grid.removeItems({name: n}))
+                        grid.render()
+                    })
                 </script>
             </div>
         </div>

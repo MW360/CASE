@@ -10,6 +10,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script src="js/workflow_classes.js"></script>
     <script type="text/javascript" src="js/mxClient.js"></script>
+    <script type="text/javascript" src="js/workflow-loader.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -49,13 +50,18 @@
         </div>
     </div>
     <script>
-        /*
-        
-         */
         let json = null
         let devices = [];
         let scripts = [];
+        let workflow = null
 
+        let workflowParam = new URL(document.URL).searchParams['name']
+        if(workflowParam !== null) {
+            $.get(`http://localhost:5000/workflows/${workflowParam}`, (data) => {
+                let json = JSON.parse(data)
+                console.log(json)
+            })
+        }
         
         $.get('http://localhost:5000/devices', (data) => {
             json = JSON.parse(data)
